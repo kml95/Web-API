@@ -10,8 +10,11 @@ namespace WebApi.Api
 {
     public class BookController : ApiController
     {
-        protected BookController()
+        private readonly kokoEntities dbcontext;
+        asdasd
+        public BookController(kokoEntities dbcontext)
         {
+            this.dbcontext = dbcontext;
         }
 
         [HttpGet, Route("Api/GetAllBooks")]
