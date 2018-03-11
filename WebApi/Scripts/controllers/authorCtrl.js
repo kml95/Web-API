@@ -8,5 +8,7 @@ app.controller('myAuthorCtrl', function ($scope, $http) {
             });
     }
 
+
+
     $scope.GetAllAuthors();
 });
