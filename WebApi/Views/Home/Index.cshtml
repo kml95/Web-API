@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div ng-app="myAuthor" ng-controller="myAuthorCtrl">
+    <table>
+        <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Miasto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="author in authors">
+                <td>{{author.LastName}}</td>
+                <td>{{author.FirstName}}</td>
+                <td>{{author.City}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
