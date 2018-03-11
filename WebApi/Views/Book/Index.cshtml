@@ -2,6 +2,21 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+<div ng-app="MY" ng-controller="myBookCtrl">
+    <table>
+        <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Miasto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in books">
+                <td>{{book.Title}}</td>
+                <td>{{book.AuthorId}}</td>
+                <td>{{book.Year}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

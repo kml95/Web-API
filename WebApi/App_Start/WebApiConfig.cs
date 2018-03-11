@@ -13,8 +13,7 @@ namespace WebApi
             // Web API configuration and services
 
             // Web API k
-            config.Formatters.JsonFormatter.SupportedMediaTypes
-    .Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             config.MapHttpAttributeRoutes();
 

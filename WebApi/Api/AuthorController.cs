@@ -10,26 +10,24 @@ namespace WebApi.Api
 {
     public class AuthorController : ApiController
     {
-        protected AuthorController()
+        private readonly kokoEntities dbcontext;
+
+        public AuthorController(kokoEntities dbcontext)
         {
+            this.dbcontext = dbcontext;
         }
 
         [HttpGet, Route("Api/GetAllAuthors")]
-        public List<Author> GetAll()
+        public IEnumerable<Author> GetAll()
         {
-            kokoEntities dbcontext = new kokoEntities();
-
             return dbcontext.Author.ToList();
         }
 
-        [HttpPost, Route("Api/AddAutho")]
+        [HttpPost, Route("Api/AddAuthor")]
         public void AddAuthor(Author newAuthor)
         {
-            kokoEntities dbcontext = new kokoEntities();
-
             dbcontext.Author.Add(newAuthor);
             dbcontext.SaveChanges();
-
         }
 
     }

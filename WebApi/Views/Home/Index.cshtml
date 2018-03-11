@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<div ng-app="myAuthor" ng-controller="myAuthorCtrl">
+<div ng-app="myLibrary" ng-controller="myAuthorCtrl">
     <table>
         <thead>
             <tr>
@@ -19,5 +19,20 @@
             </tr>
         </tbody>
     </table>
+
+    <div id="formularz">
+        <form>
+            <label>Name</label>
+            <input name="name" type="text" ng-model="newAuthor.FirstName" class="form-control" placeholder="Jan">
+
+            <label>Surname</label>
+            <input name="surname" type="text" ng-model="newAuthor.LastName" class="form-control" placeholder="Kowalski">
+            <input name="surname" type="text" ng-model="newAuthor.City" class="form-control" placeholder="Kowalski">
+            <input name="surname" type="text" ng-model="newAuthor.Age" class="form-control" placeholder="Kowalski">
+
+            <input class="btn btn-success" ng-click="clickAddAuthor(newAuthor)" id="submit" name="submit" type="submit" value="Add">
+        </form>
+    </div>
+
 </div>
 

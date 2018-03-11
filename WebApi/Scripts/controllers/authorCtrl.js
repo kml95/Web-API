@@ -1,4 +1,4 @@
-﻿var app = angular.module('myAuthor', []);
+﻿var app = angular.module('myLibrary', []);
 app.controller('myAuthorCtrl', function ($scope, $http) {
   
     $scope.GetAllAuthors = function () {
@@ -8,7 +8,12 @@ app.controller('myAuthorCtrl', function ($scope, $http) {
             });
     }
 
-
+    $scope.clickAddAuthor = function (newAuthor) {
+        $http.post("/Api/AddAuthor", newAuthor)
+            .then(function (response) {
+                $scope.GetAllAuthors();
+            });
+    }
 
     $scope.GetAllAuthors();
 });

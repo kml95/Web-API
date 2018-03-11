@@ -18,6 +18,7 @@ namespace WebApi.Models
         public kokoEntities()
             : base("name=kokoEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
