@@ -64,8 +64,7 @@ namespace WebApi
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<kokoEntities>().ToSelf().
-                  InRequestScope();
+            kernel.Bind<kokoEntities>().ToSelf().InRequestScope();
         }
     }
 }

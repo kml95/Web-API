@@ -1,38 +1,91 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
-<div ng-app="myLibrary" ng-controller="myAuthorCtrl">
-    <table>
-        <thead>
-            <tr>
-                <th>Imie</th>
-                <th>Nazwisko</th>
-                <th>Miasto</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="author in authors">
-                <td>{{author.LastName}}</td>
-                <td>{{author.FirstName}}</td>
-                <td>{{author.City}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div id="formularz">
-        <form>
-            <label>Name</label>
-            <input name="name" type="text" ng-model="newAuthor.FirstName" class="form-control" placeholder="Jan">
-
-            <label>Surname</label>
-            <input name="surname" type="text" ng-model="newAuthor.LastName" class="form-control" placeholder="Kowalski">
-            <input name="surname" type="text" ng-model="newAuthor.City" class="form-control" placeholder="Kowalski">
-            <input name="surname" type="text" ng-model="newAuthor.Age" class="form-control" placeholder="Kowalski">
-
-            <input class="btn btn-success" ng-click="clickAddAuthor(newAuthor)" id="submit" name="submit" type="submit" value="Add">
-        </form>
+<div ng-app="myAuthor" ng-controller="myAuthorCtrl">
+    <div class="container" ng-init="Authors=1" ng-show="Authors">
+        <div class="text-center">
+            <h1>Authors</h1>
+        </div>
+        <button class="btn btn-success" ng-click="showAddAuthor()">Add new</button>
+        <ul class="nav navbar-nav navbar-right">
+            </span>
+            <input style="float:right" id="inputIcon" type="text" class="form-control" ng-model="search" placeholder='Search'>
+        </ul>
+        <p></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Last Name<i class="fa fa-sort" aria-hidden="true" ng-click="SortAuthorByLastName()"></i></th>
+                    <th>First name</th>
+                    <th>City</th>
+                    <th>Age<i class="fa fa-sort" aria-hidden="true" ng-click="SortAuthorByAge()"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="author in authors | orderBy:sortAuthor | filter:search">
+                    <td>{{author.LastName}}</td>
+                    <td>{{author.FirstName}}</td>
+                    <td>{{author.City}}</td>
+                    <td>{{author.Age}}</td>
+                    <td>
+                        <button class="btn btn-success" ng-click="showEditAuthor(author)">Edit</button> |
+                        @*<button class="btn btn-info" ng-click="GetAreaById(employee.AreaId)">Area</button> |*@
+                        <button class="btn btn-danger" ng-click="DeleteAuthorCtrl(author.Id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
+    <div class="container" ng-init="AddAuthor=0" ng-show="AddAuthor">
+        <div class="text-center">
+            <h1>Add author</h1>
+        </div>
+        <p></p>
+        <div class="alert alert-danger" ng-show="AuthorFailure">
+            <strong>Failure!</strong> This employee form is not valid.
+        </div>
+        <div id="formularz">
+            <form>
+                <label>Last Name</label>
+                <input name="lastname" type="text" ng-model="newAuthor.LastName" class="form-control" placeholder="Kowalski">
+                <br />
+                <label>First Surname</label>
+                <input name="firstname" type="text" ng-model="newAuthor.FirstName" class="form-control" placeholder="Jan">
+                <br />
+                <label>City</label>
+                <input name="city" type="text" ng-model="newAuthor.City" class="form-control" placeholder="Warszawa">
+                <br />
+                <label>Age</label>
+                <input name="age" type="number" ng-model="newAuthor.Age" class="form-control" placeholder="22">
+                <br />
+                <input class="btn btn-success" ng-click="AddAuthorCtrl(newAuthor)" id="submit" name="submit" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div class="container" ng-init="EditAuthor=0" ng-show="EditAuthor">
+        <div class="text-center">
+            <h1>Edit author</h1>
+        </div>
+        <p></p>
+        <div id="formularz">
+            <form>
+                <label>Last Name</label>
+                <input name="lastname" type="text" ng-model="editedAuthor.LastName" class="form-control">
+                <br />
+                <label>First Namee</label>
+                <input name="firstname" type="text" ng-model="editedAuthor.FirstName" class="form-control">
+                <br />
+                <label>City</label>
+                <input name="city" type="text" ng-model="editedAuthor.City" class="form-control">
+                <br />
+                <label>Age</label>
+                <input name="age" type="number" ng-model="editedAuthor.Age" class="form-control">
+                <br />
+                <input class="btn btn-success" ng-click="EditAuthorCtrl(editedAuthor)" id="submit" name="submit" type="submit" value="Edit">
+            </form>
+        </div>
+    </div>
 </div>
+
+
 

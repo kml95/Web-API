@@ -2,21 +2,80 @@
 @{
     ViewBag.Title = "Index";
 }
-<div ng-app="MY" ng-controller="myBookCtrl">
-    <table>
-        <thead>
-            <tr>
-                <th>Imie</th>
-                <th>Nazwisko</th>
-                <th>Miasto</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="book in books">
-                <td>{{book.Title}}</td>
-                <td>{{book.AuthorId}}</td>
-                <td>{{book.Year}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div ng-app="myBook" ng-controller="myBookCtrl">
+    <div class="container" ng-init="Books=1" ng-show="Books">
+        <div class="text-center">
+            <h1>Books</h1>
+        </div>
+        <button class="btn btn-success" ng-click="showAddBook()">Add new</button>
+        <ul class="nav navbar-nav navbar-right">
+            </span>
+            <input style="float:right" id="inputIcon" type="text" class="form-control" ng-model="search" placeholder='Search'>
+        </ul>
+        <p></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title<i class="fa fa-sort" aria-hidden="true" ng-click="SortBookByTitle()"></i></th>
+                    <th>AuthorId</th>
+                    <th>Year<i class="fa fa-sort" aria-hidden="true" ng-click="SortBookByYear()"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books | orderBy:sortBook | filter:search">
+                    <td>{{book.Title}}</td>
+                    <td>{{book.AuthorId}}</td>
+                    <td>{{book.Year}}</td>
+                    <td>
+                        <button class="btn btn-success" ng-click="showEditBook(book)">Edit</button> |
+                        @*<button class="btn btn-info" ng-click="GetAreaById(employee.AreaId)">Area</button> |*@
+                        <button class="btn btn-danger" ng-click="DeleteBookCtrl(book.Id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container" ng-init="AddBook=0" ng-show="AddBook">
+        <div class="text-center">
+            <h1>Add book</h1>
+        </div>
+        <p></p>
+        <div class="alert alert-danger" ng-show="EmployeeFailure">
+            <strong>Failure!</strong> This employee form is not valid.
+        </div>
+        <div id="formularz">
+            <form>
+                <label>Title</label>
+                <input name="title" type="text" ng-model="newBook.Title" class="form-control" placeholder="Potop">
+                <br />
+                <label>Author Last Name</label>
+                <input name="" type="text" ng-model="newBook.AuthorLastName" class="form-control" placeholder="Kowalski">
+                <br />
+                <label>Year</label>
+                <input name="year" type="number" ng-model="newBook.Year" class="form-control" placeholder="1980">
+                <br />
+                <input class="btn btn-success" ng-click="AddBookCtrl(newBook)" id="submit" name="submit" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div class="container" ng-init="EditBook=0" ng-show="EditBook">
+        <div class="text-center">
+            <h1>Edit book</h1>
+        </div>
+        <p></p>
+        <div id="formularz">
+            <form>
+                <label>Title</label>
+                <input name="title" type="text" ng-model="editedBook.Title" class="form-control">
+                <br />
+                <label>AuthorId</label>
+                <input name="authorid" type="number" ng-model="editedBook.AuthorId" class="form-control">
+                <br />
+                <label>Year</label>
+                <input name="year" type="number" ng-model="editedBook.Year" class="form-control">
+                <br />
+                <input class="btn btn-success" ng-click="EditBookCtrl(editedBook)" id="submit" name="submit" type="submit" value="Edit">
+            </form>
+        </div>
+    </div>
 </div>
